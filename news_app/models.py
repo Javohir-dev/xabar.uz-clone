@@ -1,6 +1,10 @@
 from django.utils import timezone
-
 from django.db import models
+
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=News.Status.Published)
 
 
 class Category(models.Model):
@@ -31,6 +35,9 @@ class News(models.Model):
                               choices=Status.choices,
                               default=Status.Draft
                               )
+
+    objects = models.Manager()  # default manager of django
+    published = PublishedManager()
 
     class Meta:
         ordering = ["-publish_time"]
