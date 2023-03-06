@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News detail page</title>
+</head>
+<body>
+<h1>
+    <a href="{% url 'all_news_list' %}">Go back</a>
+</h1>
+    <h1>
+      {{ news.title }}
+    </h1>
+    <i>
+        Published date:{{ news.publish_time }}
+    </i>
+    <p>
+        {{ news.body | linebreaks }}
+    </p>
+</body>
+</html>
