@@ -17,3 +17,23 @@ def news_detail(request, id):
         "news": news,
     }
     return render(request, "news/news_detail.html", context=context)
+
+
+def HomePageView(request):
+    news = News.published.all()
+    categories = Category.objects.all()
+    context = {
+        'news': news,
+        'category': categories,
+    }
+    return render(request, 'news/home.html', context)
+
+
+def contactPageView(request):
+    context = {}
+    return render(request, 'news/contact.html', context)
+
+
+def _404PageView(request):
+    context = {}
+    return render(request, 'news/404.html', context)
